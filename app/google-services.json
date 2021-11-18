@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "37548380877",
+    "project_id": "northkorean-mem",
+    "storage_bucket": "northkorean-mem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37548380877:android:d63327d51aa5aa4b634f84",
+        "android_client_info": {
+          "package_name": "org.techtown.northkorean_memorization"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37548380877-lh2o37q1u2kfl88poriu2k3ugj2srmom.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.techtown.northkorean_memorization",
+            "certificate_hash": "406ba15c6e817932340a03f41863453712471c69"
+          }
+        },
+        {
+          "client_id": "37548380877-cmptqt0o2s910s2hj73hiej383te3ehf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtX4KoYcT3GkBZNvz3TTezs6q1AYEQ1VA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37548380877-cmptqt0o2s910s2hj73hiej383te3ehf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/kim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/kim"
+            android:adjustViewBounds="true"
+            android:maxWidth="200dp"
+            android:maxHeight="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"/>
+
+        <org.techtown.northkorean_memorization.OutlineTextView
+            xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="북한\n    문화어\n  암기앱"
+            android:textColor="@color/white"
+            android:textSize="35dp"
+            android:layout_marginTop="20dp"
+            textTitle:textStroke="true"
+            textTitle:textStrokeColor="@color/black"
+            textTitle:textStrokeWidth="6.0"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/study"
+            android:layout_width="240dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/solid_button"
+            android:text="학  습"
+            app:backgroundTint="#c8c8c8" />
+
+        <Button
+            android:id="@+id/test"
+            android:layout_width="240dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/study"
+            android:layout_alignLeft="@+id/study"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/solid_button"
+            android:text="테스트"
+            app:backgroundTint="#c8c8c8" />
+
+        <Button
+            android:id="@+id/myWord"
+            android:layout_width="115dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/test"
+            android:layout_alignLeft="@+id/test"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/solid_button"
+            android:text="내 단어장"
+            app:backgroundTint="#c8c8c8" />
+
+        <Button
+            android:id="@+id/setting"
+            android:layout_width="115dp"
+            android:layout_height="80dp"
+            android:layout_below="@+id/test"
+            android:layout_alignRight="@+id/test"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/solid_button"
+            android:text="설정"
+            app:backgroundTint="#c8c8c8" />
+    </RelativeLayout>
+
+</LinearLayout>
+
