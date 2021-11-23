@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button test;
     private Button myWord;
     private Button setting;
+    private Button registerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +54,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        registerID = findViewById(R.id.registerID); //임시 버튼임 ㅇ
+        registerID.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+    //버튼 연결한 클래스 작성 후 AndroidManifest에 등록하세요 안해놨음.
 }
