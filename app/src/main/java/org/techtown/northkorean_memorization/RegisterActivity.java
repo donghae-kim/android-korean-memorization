@@ -51,16 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "회원가입에 성공했습니다." ,Toast.LENGTH_SHORT).show();
-
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    String email = user.getEmail(); //테스트 후 변수 명 변경 (통일)
-                                    String uid = user.getUid();
-
-                                    HashMap<Object, String> hashMap = new HashMap<>();
-                                    hashMap.put("uid", uid);
-                                    hashMap.put("email", email);
-
-
                                 } else {
                                     if(task.getException().toString() !=null){
                                         Toast.makeText(RegisterActivity.this, "회원가입에 실패했습니다." ,Toast.LENGTH_SHORT).show();
