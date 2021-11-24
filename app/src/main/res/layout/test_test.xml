@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:layout_margin="16dp"
+    android:weightSum="100">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35"
+
+        android:text="Problems"
+        android:textSize="64dp"
+        android:gravity="center"
+        android:id="@+id/test_problems"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:weightSum="20">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+
+            android:layout_weight="10"
+            android:weightSum="20">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:layout_margin="5dp"
+
+                android:text="Ans1"
+                android:textSize="25dp"
+                android:id="@+id/test_ans1"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:layout_margin="5dp"
+
+                android:text="Ans2"
+                android:textSize="25dp"
+                android:id="@+id/test_ans2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+
+            android:layout_weight="10"
+            android:weightSum="20">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:layout_margin="5dp"
+
+                android:text="Ans3"
+                android:textSize="25dp"
+                android:id="@+id/test_ans3"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:layout_margin="5dp"
+
+                android:text="Ans4"
+                android:textSize="25dp"
+                android:id="@+id/test_ans4"/>
+        </TableRow>
+    </TableLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="15">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:layout_margin="10dp"
+
+            android:text="즐겨찾기"
+            android:textSize="20dp"
+            android:id="@+id/test_bookMark"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:layout_margin="10dp"
+
+            android:text="잘 모르겠어요"
+            android:textSize="20dp"
+            android:id="@+id/test_passBtn"/>
+    </TableRow>
+</LinearLayout>
