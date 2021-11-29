@@ -112,23 +112,23 @@
 
     <TextView
         android:id="@+id/hide"
-        android:layout_width="136dp"
-        android:layout_height="476dp"
+        android:layout_width="134dp"
+        android:layout_height="478dp"
         android:layout_above="@+id/btncover"
         android:layout_below="@+id/table"
         android:layout_alignParentLeft="@+id/lvContact"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="-1dp"
         android:background="#000000"
         android:visibility="invisible" />
 
     <TextView
         android:id="@+id/hide2"
-        android:layout_width="138dp"
-        android:layout_height="476dp"
+        android:layout_width="167dp"
+        android:layout_height="478dp"
         android:layout_above="@+id/btncover"
         android:layout_below="@+id/table"
         android:layout_alignRight="@+id/lvContact"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginRight="106dp"
         android:background="#000000"
         android:visibility="invisible" />
