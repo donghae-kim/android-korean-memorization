@@ -2,46 +2,59 @@ package org.techtown.northkorean_memorization;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 
 public class Study extends AppCompatActivity {
 
     Test_DatabaseAdapter databaseAdapter;
-    String[] items = {"일상생활어","IT용어","은어"};
+    String[] item = {"1. 일상생활어","2. IT용어","3. 은어"};
+    ArrayList<String> listItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.study_activity_main);
 
         PreCreateDB.copyDB(this);
 
 
+
         databaseAdapter = new Test_DatabaseAdapter(this);
-        ListView listvContact = findViewById(R.id.lvContact);
         final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.populateListViewFromDB();
+
+        ListView listvContact = findViewById(R.id.lvContact);
+
         listvContact.setAdapter(simpleCursorAdapter);
 
 
         listvContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Cursor cursor = (Cursor) simpleCursorAdapter.getItem(position);
                 String name = cursor.getString(0);
+
             }
         });
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, items);
+                this, android.R.layout.simple_spinner_item, item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -53,6 +66,7 @@ public class Study extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
 
 
 
@@ -93,7 +107,11 @@ public class Study extends AppCompatActivity {
                 }
             }
         });
+
+
     }
+
+
 
 }
 
