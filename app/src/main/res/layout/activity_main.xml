@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="?attr/bgColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,7 +47,8 @@
             android:layout_marginTop="65dp"
             android:background="@drawable/solid_button"
             android:text="학  습"
-            app:backgroundTint="#c8c8c8" />
+            android:textColor="?attr/metaTextColor"
+            app:backgroundTint="#dcdcdc" />
 
         <Button
             android:id="@+id/test"
@@ -57,7 +59,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/solid_button"
             android:text="테스트"
-            app:backgroundTint="#c8c8c8" />
+            app:backgroundTint="#dcdcdc"
+            android:textColor="?attr/metaTextColor"/>
 
         <Button
             android:id="@+id/myWord"
@@ -68,7 +71,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/solid_button"
             android:text="내 단어장"
-            app:backgroundTint="#c8c8c8" />
+            app:backgroundTint="#dcdcdc"
+            android:textColor="?attr/metaTextColor"/>
 
         <Button
             android:id="@+id/setting"
@@ -79,7 +83,8 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/solid_button"
             android:text="설정"
-            app:backgroundTint="#c8c8c8" />
+            app:backgroundTint="#dcdcdc"
+            android:textColor="?attr/metaTextColor"/>
 
         <Button
             android:id="@+id/registerID"
