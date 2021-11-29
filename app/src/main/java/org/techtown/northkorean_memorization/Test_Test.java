@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,18 +22,20 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.test_test);
 
         // View 객체 획득
         test_getView();
+
+        test_buildProblem(20, 1);
 
         // Button 이벤트 등록
         test_setClick();
     }
 
-    public void onClick(View view) {
-        if (chance) {
-            if (view == ans1);
-        }
+    private int test_buildProblem(int problemSize, int section) {
+        //Test_DatabaseAdapter.DatabaseHelper
+        return 1;
     }
 
     /**
@@ -55,6 +58,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
      * View 객체에 온클릭 리스너 in Test_Test <p>
      * problems, ans1 ~ ans4, bookMark, passBtn </p>
      */
+
     private void test_setClick() {
         problems.setOnClickListener(this);
 
@@ -65,5 +69,29 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         bookMark.setOnClickListener(this);
         passBtn.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Toast testToast = Toast.makeText(this.getApplicationContext(),view + "asd", Toast.LENGTH_SHORT);
+        testToast.show();
+    }
+}
+
+class Problem {
+    int id;
+    String problem;
+    String correct;
+    String unCorrect1;
+    String unCorrect2;
+    String unCorrect3;
+
+    public Problem(int id, String problem, String correct, String unCorrect1, String unCorrect2, String unCorrect3) {
+        this.id = id;
+        this.problem = problem;
+        this.correct = correct;
+        this.unCorrect1 = unCorrect1;
+        this.unCorrect2 = unCorrect2;
+        this.unCorrect3 = unCorrect3;
     }
 }

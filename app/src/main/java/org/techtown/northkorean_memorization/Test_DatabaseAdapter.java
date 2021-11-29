@@ -43,7 +43,7 @@ public class Test_DatabaseAdapter {
         }
 
 
-        private static class DatabaseHelper extends SQLiteOpenHelper {
+        public static class DatabaseHelper extends SQLiteOpenHelper {
 
             private static final String DATABASE_NAME = "TEST.db";
             private static final String TABLE_NAME = "Normal";
