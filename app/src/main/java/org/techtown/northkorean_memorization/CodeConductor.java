@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CodeConductor extends AppCompatActivity {
     private final String tableName = "Words";
-    private final String datebaseName = "Words.db";
+    private final String databaseName = "Words.db";
 
     private Boolean updateDB(int[] bookMark, int[] memorized) {
         Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
