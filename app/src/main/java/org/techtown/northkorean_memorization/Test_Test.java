@@ -1,6 +1,9 @@
 package org.techtown.northkorean_memorization;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,18 +27,63 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_test);
 
+        PreCreateDB.copyDB(this);
+
         // View 객체 획득
         test_getView();
 
-        test_buildProblem(20, 1);
+        test_buildProblem(20, 1, false);
 
         // Button 이벤트 등록
         test_setClick();
     }
 
-    private int test_buildProblem(int problemSize, int section) {
-        //Test_DatabaseAdapter.DatabaseHelper
+    private int test_buildProblem(int problemSize, int section, boolean memExclude) {
+        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String conditionWhere = "";
+        if (memExclude)
+            conditionWhere = "where Memorized = 0";
+
+        Cursor cursor = db.rawQuery("select * from  " + conditionWhere, null);
+        int loadedSize = cursor.getCount();
+
+        Log.d("Test_Test", "Loaded " + loadedSize + " rows");
+
+
+
+        if (loadedSize < problemSize)
+            problemSize = loadedSize;
+
+        int[] arr = new int[problemSize];
+        rand_noDuple(arr, problemSize, loadedSize);
+
+        Problem[] Problems = new Problem[problemSize];
+        for (int i = 0; i < problemSize; ++i) {
+            ;
+        }
+
+
+
+        db.close();
         return 1;
+    }
+
+    private void rand_noDuple(int[] arr, int arrSize, int range) {
+        int size = 0;
+        int temp = 0;
+        while (size < arrSize) {
+            temp = (int)(Math.random() * range);
+            for (int i = 0; i < size; ++i) {
+                if (arr[i] == temp)
+                    continue;
+            }
+
+            arr[size++] = temp;
+        }
+
+        Log.d("Test_Test", arrSize + " Problems are successfully selected  : ");
     }
 
     /**
@@ -58,7 +106,6 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
      * View 객체에 온클릭 리스너 in Test_Test <p>
      * problems, ans1 ~ ans4, bookMark, passBtn </p>
      */
-
     private void test_setClick() {
         problems.setOnClickListener(this);
 

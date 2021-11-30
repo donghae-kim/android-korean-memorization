@@ -45,7 +45,7 @@ public class Test_DatabaseAdapter {
 
         public static class DatabaseHelper extends SQLiteOpenHelper {
 
-            private static final String DATABASE_NAME = "TEST.db";
+            private static final String DATABASE_NAME = "Normal.db";
             private static final String TABLE_NAME = "Normal";
             private static final int DATABASE_VERSION = 1;
             private static final String KEY_ROWID = "_id";
