@@ -17,6 +17,9 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private int solvedNum;
     private int collectNum;
 
+    private final String tableName = "Words";
+    private final String datebaseName = "Words.db";
+
     TextView problems;
     Button ans1, ans2, ans3, ans4;
     Button bookMark;
@@ -27,12 +30,12 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_test);
 
-        PreCreateDB.copyDB(this);
+        //PreCreateDB.copyDB(this);
 
         // View 객체 획득
         test_getView();
 
-        test_buildProblem(20, 1, false);
+        test_buildProblem(20, 3, false);
 
         // Button 이벤트 등록
         test_setClick();
@@ -42,30 +45,92 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        String conditionWhere = "";
+        String conditionWhere = " where Filed = " + section;
         if (memExclude)
-            conditionWhere = "where Memorized = 0";
+            conditionWhere += "Memorized = 0";
 
-        Cursor cursor = db.rawQuery("select * from Words " + conditionWhere, null);
+        //Cursor cursor = db.rawQuery("select * from " + tableName + conditionWhere, null);
+
+        Cursor cursor = db.rawQuery("select * from " + tableName, null);
         int loadedSize = cursor.getCount();
 
-        Log.d("Test_Test", "Loaded " + loadedSize + " rows");
+        db.execSQL("UPDATE " + tableName + " SET BookMark = " + 0);
+        db.execSQL("UPDATE " + tableName + " SET Memorized = " + 0);
 
+
+        Log.d("Test_Test", "Loaded " + loadedSize + " rows");
 
 
         if (loadedSize < problemSize)
             problemSize = loadedSize;
 
+        int mid = loadedSize / 2;
+
         int[] arr = new int[problemSize];
         rand_noDuple(arr, problemSize, loadedSize);
 
         Problem[] Problems = new Problem[problemSize];
+
+        int[] memo = { 1, 3, 5, 7, 9};
+        int[] book = { 2 ,4, 6, 8};
+
+        updateDB(book, memo);
+
+        cursor = db.rawQuery("select * from " + tableName + " where BookMark = 1", null);
+        loadedSize = cursor.getCount();
+        Log.d("Test_Test", "Loaded " + loadedSize + " rows");
+
+
+        cursor = db.rawQuery("select * from " + tableName + " where Memorized = 1", null);
+        loadedSize = cursor.getCount();
+        Log.d("Test_Test", "Loaded " + loadedSize + " rows");
+
+        /*
         for (int i = 0; i < problemSize; ++i) {
-            ;
+            cursor.moveToPosition(arr[i]);
+
+            int Problem_Filed = cursor.getInt(4);
+            if(Problem_Filed == 3 || Math.random() > 0.5) {
+                int id = cursor.getInt(0);
+                String problem = cursor.getString(2);
+                String correct = cursor.getString(1);
+                if (arr[i] <= mid)
+                    cursor.moveToNext();
+                else
+                    cursor.moveToPrevious();
+                String unCorrect1 = cursor.getString(1);
+
+                cursor.moveToPosition((int)(Math.random() * loadedSize));
+                String unCorrect2 = cursor.getString(1);
+
+                cursor.moveToPosition((int)(Math.random() * loadedSize));
+                String unCorrect3 = cursor.getString(1);
+
+                Problems[i] = new Problem(id, problem, correct, unCorrect1, unCorrect2, unCorrect3);
+            }
+            else {
+                int id = cursor.getInt(0);
+                String problem = cursor.getString(1);
+                String correct = cursor.getString(2);
+                if (arr[i] <= mid)
+                    cursor.moveToNext();
+                else
+                    cursor.moveToPrevious();
+                String unCorrect1 = cursor.getString(2);
+
+                cursor.moveToPosition((int)(Math.random() * loadedSize));
+                String unCorrect2 = cursor.getString(2);
+
+                cursor.moveToPosition((int)(Math.random() * loadedSize));
+                String unCorrect3 = cursor.getString(2);
+
+                Problems[i] = new Problem(id, problem, correct, unCorrect1, unCorrect2, unCorrect3);
+            }
+
         }
 
 
-
+        */
         db.close();
         return 1;
     }
@@ -74,7 +139,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         int size = 0;
         int temp = 0;
         while (size < arrSize) {
-            temp = (int)(Math.random() * range);
+            temp = (int) (Math.random() * range);
             for (int i = 0; i < size; ++i) {
                 if (arr[i] == temp)
                     continue;
@@ -118,6 +183,31 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         passBtn.setOnClickListener(this);
     }
 
+    private Boolean updateDB(int[] bookMark, int[] memorized) {
+        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        if (db != null) {
+            for (int i = 0; i < bookMark.length; ++i) {
+                updateSQL(db, tableName, "BookMark", bookMark[i], 1);
+                Log.d("Test_Test_updateDB", bookMark[i] + "th BookMark change into 1");
+            }
+            for (int i = 0; i < memorized.length; ++i) {
+                db.execSQL("UPDATE " + tableName + " SET Memorized = 1 where _id = " + memorized[i]);
+                Log.d("Test_Test_updateDB", memorized[i] + "th Memorized change into 1");
+            }
+            db.close();
+        }
+        else
+            return false;
+
+        return true;
+    }
+
+    private void updateSQL(SQLiteDatabase db, String inputTableName, String what, int id, int value) {
+        db.execSQL("UPDATE " + tableName + " SET " + what + " = 1 where _id = " + id);
+    }
+
     @Override
     public void onClick(View view) {
         Toast testToast = Toast.makeText(this.getApplicationContext(),view + "asd", Toast.LENGTH_SHORT);
@@ -127,6 +217,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
 class Problem {
     int id;
+    int filed;
     String problem;
     String correct;
     String unCorrect1;
