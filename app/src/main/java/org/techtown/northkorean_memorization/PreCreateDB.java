@@ -16,9 +16,9 @@ public class PreCreateDB {
     /**
      * 외부의 DB를 내부 DB로 복사하는 함수
      */
-    public static void copyDB(Context context){
-        // 3개의 외부 db를 불러옴
-        String dbName[] = { "Normal.db", "IT.db", "Slang.db" };
+    public static void copyDB(Context context) {
+
+        String dbName = "Words.db";
         try{
             String destPath ="/data/data/"+ context.getPackageName() + "/databases";
 
@@ -26,12 +26,10 @@ public class PreCreateDB {
             if(!f.exists())
                 f.mkdir();
 
-            for (int i = 0; i < dbName.length; ++i) {
-                String dbPath = destPath + "/" + dbName[i];
-                f = new File(dbPath);
-                if (!f.exists())
-                    rawCopy(context.getAssets().open(dbName[i]), new FileOutputStream(dbPath));
-            }
+            String dbPath = destPath + "/" + dbName;
+            f = new File(dbPath);
+            if (!f.exists())
+                rawCopy(context.getAssets().open(dbName), new FileOutputStream(dbPath));
 
             Log.d("PreCreateDB", "External DB loading Completed");
         }catch (FileNotFoundException e){

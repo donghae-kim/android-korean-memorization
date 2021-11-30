@@ -46,7 +46,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         if (memExclude)
             conditionWhere = "where Memorized = 0";
 
-        Cursor cursor = db.rawQuery("select * from  " + conditionWhere, null);
+        Cursor cursor = db.rawQuery("select * from Words " + conditionWhere, null);
         int loadedSize = cursor.getCount();
 
         Log.d("Test_Test", "Loaded " + loadedSize + " rows");
