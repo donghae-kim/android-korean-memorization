@@ -32,12 +32,12 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.test_test);
         test_initValue();
 
-        //PreCreateDB.copyDB(this);
+        PreCreateDB.copyDB(this);
 
         // View 객체 획득
         test_getView();
 
-        problemSet = test_buildProblem(problemsNum, 3, false);
+        problemSet = test_buildProblem(problemsNum, 1, false);
 
         // Button 이벤트 등록
         test_setClick();
@@ -56,11 +56,12 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        String conditionWhere = " where Filed = " + section;
+        String conditionWhere = " where Field = " + section;
         if (memExclude)
             conditionWhere += "Memorized = 0";
 
-        Cursor cursor = db.rawQuery("select * from " + tableName + conditionWhere, null);
+        //Cursor cursor = db.rawQuery("select * from " + tableName + conditionWhere, null);
+        Cursor cursor = db.rawQuery("select * from Words", null);
         int loadedSize = cursor.getCount();
 
         Log.d("Test_Test", "Loaded " + loadedSize + " rows");
@@ -101,6 +102,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         int id = cursor.getInt(0);
         String problem = cursor.getString(from);
         String correct = cursor.getString(to);
+
         if (index <= loadedSize / 2)
             cursor.moveToNext();
         else
