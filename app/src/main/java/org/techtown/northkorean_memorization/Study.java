@@ -1,5 +1,6 @@
 package org.techtown.northkorean_memorization;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -23,7 +25,8 @@ public class Study extends AppCompatActivity {
 
     Test_DatabaseAdapter databaseAdapter;
     String[] item = {"1. 일상생활어","2. IT용어","3. 은어"};
-    ArrayList<String> listItem;
+    String[] checkitem = new String[999];
+    int [] memo=  new int[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +38,48 @@ public class Study extends AppCompatActivity {
 
 
         databaseAdapter = new Test_DatabaseAdapter(this);
-        final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.populateListViewFromDB();
+       final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.populateListViewFromDB();
 
         ListView listvContact = findViewById(R.id.lvContact);
 
-        listvContact.setAdapter(simpleCursorAdapter);
+       listvContact.setAdapter(simpleCursorAdapter);
 
 
         listvContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Cursor cursor = (Cursor) simpleCursorAdapter.getItem(position);
-                String name = cursor.getString(0);
+                Cursor cursor = (Cursor) simpleCursorAdapter.getItem(position+10);
 
+                checkitem[position] = cursor.getString(cursor.getColumnIndex("_id"));
+
+                AlertDialog.Builder dlg = new AlertDialog.Builder(Study.this);
+                dlg.setTitle("선택");
+                final String[] versionArray = new String[] {"즐겨찾기"};
+                final boolean[] checkArray = new boolean[]{false};
+
+                dlg.setMultiChoiceItems(versionArray, checkArray, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checkArray[which]=isChecked;
+                        checkitem[position]=checkitem[position];
+                        System.out.println(checkitem[position]);
+
+                        for (int i=0; i<1; i++) {
+                            memo[i] = Integer.valueOf(checkitem[position]);
+                            CodeConductor cod = new CodeConductor();
+                          //  cod.updateDB(memo);
+
+                        }
+
+                    }
+
+                });
+                dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dlg.show();
             }
         });
 
@@ -60,7 +91,8 @@ public class Study extends AppCompatActivity {
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int poistion, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
             }
 
             public void onNothingSelected(AdapterView<?> parent) {

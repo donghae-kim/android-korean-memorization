@@ -9,12 +9,14 @@ public class CodeConductor extends AppCompatActivity {
     private final String tableName = "Words";
     private final String databaseName = "Words.db";
 
-    private Boolean updateDB(int[] bookMark, int[] memorized) {
+    public Boolean updateDB(int[] bookMark, int[] memorized) {
+
         Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
         if (db != null) {
-            for (int i = 0; i < bookMark.length; ++i) {
+
+            for (int i = 0; i < bookMark.length+1; ++i) {
                 updateSQL(db, tableName, "BookMark", bookMark[i], 1);
                 Log.d("Test_Test_updateDB", bookMark[i] + "th BookMark change into 1");
             }

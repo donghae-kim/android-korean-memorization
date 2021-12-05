@@ -44,19 +44,7 @@
                 android:textColor="#ffffff"
                 android:gravity="center"
                 />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="즐겨찾기"
-                android:textColor="#ffffff"
-                android:gravity="left"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="암기"
-                android:textColor="#ffffff"
-                />
+
         </TableRow>
     </TableLayout>
 
@@ -68,6 +56,9 @@
         android:background="#000000"
         android:divider="#000000"
         android:dividerHeight="4dp">
+
+
+
     </ListView>
 
     <TextView
@@ -82,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="3">
+        android:weightSum="2">
 
         <Button
             android:id="@+id/but1"
@@ -96,23 +87,16 @@
             android:id="@+id/but2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="bottom"
+            android:layout_gravity="right|bottom"
             android:layout_weight="1"
             android:text="표준어 숨기기" />
 
-
-        <Button
-            android:id="@+id/but3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="right|bottom"
-            android:layout_weight="1" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/hide"
-        android:layout_width="134dp"
+        android:layout_width="200dp"
         android:layout_height="478dp"
         android:layout_above="@+id/btncover"
         android:layout_below="@+id/table"
@@ -123,13 +107,14 @@
 
     <TextView
         android:id="@+id/hide2"
-        android:layout_width="167dp"
+        android:layout_width="211dp"
         android:layout_height="478dp"
         android:layout_above="@+id/btncover"
         android:layout_below="@+id/table"
-        android:layout_alignRight="@+id/lvContact"
-        android:layout_marginTop="-1dp"
-        android:layout_marginRight="106dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-1dp"
+        android:layout_toRightOf="@+id/hide"
         android:background="#000000"
         android:visibility="invisible" />
 </RelativeLayout>
