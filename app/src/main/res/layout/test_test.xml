@@ -7,15 +7,36 @@
     android:layout_margin="16dp"
     android:weightSum="100">
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="35"
+        android:layout_weight="35">
 
-        android:text="Problems"
-        android:textSize="64dp"
-        android:gravity="center"
-        android:id="@+id/test_problems"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="35"
+
+            android:text="Problems"
+            android:textSize="64dp"
+            android:gravity="center"
+            android:id="@+id/test_problems"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/correct_symbol"
+            android:id="@+id/test_correct_symbol"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/uncorrect_symbol"
+            android:id="@+id/test_uncorrect_symbol"
+            android:visibility="invisible" />
+
+    </FrameLayout>
 
     <TableLayout
         android:layout_width="match_parent"
