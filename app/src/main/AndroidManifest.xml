@@ -18,6 +18,7 @@
 
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".Test_Test" />
+        <activity android:name=".CodeConductor" />
         <activity android:name=".Study" />
         <activity android:name=".Setting"/>
         <activity
