@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     Button ans[] = new Button[4];
     Button bookMark;
     Button passBtn;
+    ImageButton nextBtn;
     ImageView correctSymbol;
     ImageView unCorrectSymbol;
 
@@ -42,12 +44,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         PreCreateDB.copyDB(this);
 
         // View 객체 획득
-        int[] a = {1, 2, 3, 4, 5};
-        updateDBdd(a, a);
-
         test_getView();
-        int temp = getMemorizedCount();
-        Log.d("Test_Test", temp + "Loaded ");
 
         problemSet = test_buildProblem(problemsNum, 1, false);
 
@@ -174,6 +171,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         bookMark = (Button) findViewById(R.id.test_bookMark);
         passBtn = (Button) findViewById(R.id.test_passBtn);
+        nextBtn = (ImageButton) findViewById(R.id.test_nextBtn);
 
         correctSymbol = (ImageView) findViewById(R.id.test_correct_symbol);
         unCorrectSymbol = (ImageView) findViewById(R.id.test_uncorrect_symbol);
@@ -193,6 +191,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         bookMark.setOnClickListener(this);
         passBtn.setOnClickListener(this);
+        nextBtn.setOnClickListener(this);
     }
 
     @Override
@@ -202,73 +201,34 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_up);
         if (chance == true) {
-            chance = false;
-            if (view == ans[problemSet[solvedNum].correctPos]) {
-                Log.d("Test_Test", "Select Right Ans!");
-                correctSymbol.setVisibility(View.VISIBLE);
-                correctSymbol.startAnimation(animation);
-                collectNum++;
-            }
-            else {
-                Log.d("Test_Test", "Select X Ans!");
-                unCorrectSymbol.setVisibility(View.VISIBLE);
-                unCorrectSymbol.startAnimation(animation);
-            }
+            if (view == ans[0] || view == ans[1] || view == ans[2] || view == ans[3]) {
+                chance = false;
+                if (view == ans[problemSet[solvedNum].correctPos]) {
+                    Log.d("Test_Test", "Select Right Ans!");
+                    correctSymbol.setVisibility(View.VISIBLE);
+                    correctSymbol.startAnimation(animation);
+                    collectNum++;
+                } else {
+                    Log.d("Test_Test", "Select X Ans!");
+                    unCorrectSymbol.setVisibility(View.VISIBLE);
+                    unCorrectSymbol.startAnimation(animation);
+                }
+                nextBtn.setVisibility(View.VISIBLE);
 
-            ++solvedNum;
-        } else if (++solvedNum < problemsNum) {
-            chance = true;
-            correctSymbol.setVisibility(View.INVISIBLE);
-            unCorrectSymbol.setVisibility(View.INVISIBLE);
-            Log.d("Test_Test", "Next ProblemSet load : ");
-            test_setActivity(solvedNum);
-        } else {
-            Log.d("Test_Test", "all ProblemSet is done");
+                ++solvedNum;
+            }
+        } else if (view == nextBtn) {
+            if (solvedNum < problemsNum) {
+                chance = true;
+                correctSymbol.setVisibility(View.INVISIBLE);
+                unCorrectSymbol.setVisibility(View.INVISIBLE);
+                nextBtn.setVisibility(View.INVISIBLE);
+                Log.d("Test_Test", "Next ProblemSet load : ");
+                test_setActivity(solvedNum);
+            } else {
+                Log.d("Test_Test", "all ProblemSet is done");
+            }
         }
-    }
-
-
-    private int getMemorizedCount() {
-        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-
-        Cursor cursor = db.rawQuery("select * from Words where Memorized=1", null);
-        int loadedSize = cursor.getCount();
-
-        db.close();
-
-        return loadedSize;
-    }
-
-    public Boolean updateDBdd(int[] bookMark, int[] memorized) {
-
-        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
-        SQLiteDatabase db = helper.getWritableDatabase();
-
-        if (db != null) {
-
-            for (int i = 0; i < bookMark.length; ++i) {
-                updateSQLee(db, tableName, "BookMark", bookMark[i], 1);
-                Log.d("Test_Test_updateDB", bookMark[i] + "th BookMark change into 1");
-            }
-            for (int i = 0; i < memorized.length; ++i) {
-                updateSQLee(db, tableName, "Memorized", memorized[i], 1);
-                Log.d("Test_Test_updateDB", memorized[i] + "th Memorized change into 1");
-            }
-            db.close();
-        }
-        else
-            return false;
-
-        return true;
-    }
-
-    /**
-     * SQL문을 함수형태로 좀더 쉽게 만든건데 쉽게 느껴지려나..? 나중에도 쓸것같아서 만들어 둠
-     * db의 inputTableName에서 id번째 행의 what 속성을 Value로 바꿈
-     */
-    private void updateSQLee(SQLiteDatabase db, String inputTableName, String what, int id, int value) {
-        db.execSQL("UPDATE " + tableName + " SET " + what + " = 1 where _id = " + id);
     }
 }
 
