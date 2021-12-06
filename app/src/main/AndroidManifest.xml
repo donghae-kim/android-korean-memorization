@@ -16,7 +16,8 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Login" />
         <activity android:name=".Test_Test" />
         <activity android:name=".Study" />
         <activity android:name=".Setting"/>
