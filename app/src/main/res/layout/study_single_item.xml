@@ -9,7 +9,7 @@
     >
     <TextView
         android:id="@+id/item_NORTH"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textColor="#ffffff"
@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="#ffffff"
-            android:visibility="visible" />
+            android:visibility="visible"
+            />
 
         <TextView
             android:id="@+id/item_id"

@@ -20,6 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import java.io.Serializable;
 
 
 public class Study extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class Study extends AppCompatActivity {
     Test_DatabaseAdapter databaseAdapter;
     String[] item = {"1. 일상생활어","2. IT용어","3. 은어"};
     String[] checkitem = new String[999];
-    int [] memo=  new int[1];
+    int[] record = new int[999];
+
     SQLiteDatabase db;
 
     @Override
@@ -50,7 +52,7 @@ public class Study extends AppCompatActivity {
 
 
         databaseAdapter = new Test_DatabaseAdapter(this);
-       final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.populateListViewFromDB();
+       final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.studyListViewFromDB();
 
         ListView listvContact = findViewById(R.id.lvContact);
 
@@ -60,33 +62,48 @@ public class Study extends AppCompatActivity {
         listvContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                int [] mark=  new int[1];
+                int [] memo=  new int[1];
                 Cursor cursor = (Cursor) simpleCursorAdapter.getItem(position);
 
                 checkitem[position] = cursor.getString(cursor.getColumnIndex("_id"));
-
                 AlertDialog.Builder dlg = new AlertDialog.Builder(Study.this);
                 dlg.setTitle("선택");
-                final String[] versionArray = new String[] {"즐겨찾기"};
-                final boolean[] checkArray = new boolean[]{false};
+                final String[] versionArray = new String[] {"즐겨찾기","암기"};
+                final boolean[] checkArray = new boolean[]{false,false};
+
+;
+                record[position] = cursor.getInt(cursor.getColumnIndex("BookMark"));
+
 
                 dlg.setMultiChoiceItems(versionArray, checkArray, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        checkArray[which]=isChecked;
-                        System.out.println(checkitem[position]);
-
-                        for (int i=0; i<memo.length; i++) {
-                            memo[i] = Integer.valueOf(checkitem[position]); //메모에다가 클릭시 받은 index값 int 값으로 넣기
-                            System.out.println(memo[i]); //logcat
-
-                            updateDB(memo,memo); // test 용으로 update db 에 memo 두개넣은거
-                            CodeConductor cd = new CodeConductor();
-//********************************************************************************************************** codeconductor 로 넘기는부분
-                        }
+// 재우가 볼 곳
+                    if(record[position]==1){
+                            if (record[position]==1) {
+                                for (int i = 0; i < mark.length; i++) {
+                                    mark[i] = Integer.valueOf(checkitem[position]); //메모에다가 클릭시 받은 index값 int 값으로 넣기
+                                }
+                            } else {
+                                for (int i = 0; i < memo.length; i++) {
+                                    memo[i] = Integer.valueOf(checkitem[position]); //메모에다가 클릭시 받은 index값 int 값으로 넣기
+                                }
+                            }updateDB1(mark, memo); }
+                        else if(record[position]==0) {
+                          if (which == 0) {
+                              for (int i = 0; i < mark.length; i++) {
+                                  mark[i] = Integer.valueOf(checkitem[position]); //메모에다가 클릭시 받은 index값 int 값으로 넣기
+                              }
+                          } else {
+                              for (int i = 0; i < memo.length; i++) {
+                                  memo[i] = Integer.valueOf(checkitem[position]); //메모에다가 클릭시 받은 index값 int 값으로 넣기
+                              }
+                          }
+                          updateDB(mark, memo); // test 용으로 update db 에 memo 두개넣은거
+                      }
 
                     }
-
 
                 });
                 dlg.setPositiveButton("확인",new DialogInterface.OnClickListener(){
@@ -109,28 +126,21 @@ public class Study extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                if(position ==0 ){
+                    final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.studyListViewFromDB();
+                    ListView listvContact = findViewById(R.id.lvContact);
+                    listvContact.setAdapter(simpleCursorAdapter);
+                }
                 if(position == 1){
-
-                    Intent intent = new Intent(Study.this, Study.class);
-                    startActivity(intent);
-                    finish();
-
+                    final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.combobox2ListViewFromDB();
+                    ListView listvContact = findViewById(R.id.lvContact);
+                    listvContact.setAdapter(simpleCursorAdapter);
                 }
                 else if(position==2){
-                    SQLiteDatabase Db1=helper.getReadableDatabase();
-
-                    Cursor cursor = Db1.rawQuery("SELECT * FROM Words",null);
-
-
+                        final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.combobox3ListViewFromDB();
+                        ListView listvContact = findViewById(R.id.lvContact);
+                        listvContact.setAdapter(simpleCursorAdapter);
                 }
-                else if(position==3)
-                { Intent intent = new Intent(Study.this, Study.class);
-                startActivity(intent);
-                finish();}
-
-
-
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -201,24 +211,42 @@ public class Study extends AppCompatActivity {
         }
         else
             return false;
-
         return true;
     }
+    public Boolean updateDB1(int[] bookMark, int[] memorized) {
 
+        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        if (db != null) {
+
+            for (int i = 0; i < 1; ++i) {
+                updateSQL(db, tableName, "BookMark", bookMark[i], 0);
+                Log.d("Test_Test_updateDB", bookMark[i] + "th BookMark change into 0");
+            }
+            for (int i = 0; i < 1; ++i) {
+                updateSQL(db, tableName, "Memorized", memorized[i], 0);
+                Log.d("Test_Test_updateDB", memorized[i] + "th Memorized change into 0");
+            }
+            db.close();
+        }
+        else
+            return false;
+        return true;
+    }
     /**
      * SQL문을 함수형태로 좀더 쉽게 만든건데 쉽게 느껴지려나..? 나중에도 쓸것같아서 만들어 둠
      * db의 inputTableName에서 id번째 행의 what 속성을 Value로 바꿈
      */
     private void updateSQL(SQLiteDatabase db, String inputTableName, String what, int id, int value) {
-        db.execSQL("UPDATE " + tableName + " SET " + what + " = 1 where _id = " + id);
+        db.execSQL("UPDATE " + tableName + " SET " + what +  "= "+value+" where _id = " + id);
     }
+
 
 
 
 
 
 }
-
-
 
 
