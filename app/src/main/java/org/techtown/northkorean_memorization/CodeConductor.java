@@ -1,5 +1,6 @@
 package org.techtown.northkorean_memorization;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -41,5 +42,19 @@ public class CodeConductor extends AppCompatActivity {
     }
 
 
+    /**
+     * 암기가 체크된 단어의 개수 리턴 하는 함수
+     */
+    private int getMemorizedCount() {
+        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery("select * from Words where Memorized=1", null);
+        int loadedSize = cursor.getCount();
+
+        db.close();
+
+        return loadedSize;
+    }
 
 }
