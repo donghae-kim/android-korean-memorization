@@ -1,5 +1,6 @@
 package org.techtown.northkorean_memorization;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,14 +21,17 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private boolean chance;
     private int problemsNum;
     private int solvedNum;
-    private int collectNum;
+    private int correctNum;
+    private int score;
     private Problem[] problemSet;
 
     private final String tableName = "Words";
     private final String databaseName = "Words.db";
 
     TextView problems;
-    //Button ans1, ans2, ans3, ans4;
+    TextView allCounter;
+    TextView corCounter;
+
     Button ans[] = new Button[4];
     Button bookMark;
     Button passBtn;
@@ -39,12 +43,14 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_test);
-        test_initValue();
 
+        test_initValue();
         PreCreateDB.copyDB(this);
 
         // View 객체 획득
         test_getView();
+        test_setCounter();
+
 
         problemSet = test_buildProblem(problemsNum, 1, false);
 
@@ -57,7 +63,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         chance = true;
         problemsNum = 20;
         solvedNum = 0;
-        collectNum = 0;
+        correctNum = 0;
         problemSet = null;
     }
 
@@ -164,6 +170,9 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private void test_getView() {
         problems = (TextView) findViewById(R.id.test_problems);
 
+        allCounter = (TextView) findViewById(R.id.test_all_counter);
+        corCounter = (TextView) findViewById(R.id.test_correct_counter);
+
         ans[0] = (Button) findViewById(R.id.test_ans1);
         ans[1] = (Button) findViewById(R.id.test_ans2);
         ans[2] = (Button) findViewById(R.id.test_ans3);
@@ -194,11 +203,17 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         nextBtn.setOnClickListener(this);
     }
 
+    private int test_getScore() {
+        return (int)(((float)correctNum / solvedNum) * 100);
+    }
+
+    private void test_setCounter() {
+        allCounter.setText("( "+ solvedNum +" / " + problemsNum + " )");
+        corCounter.setText("" + correctNum);
+    }
+
     @Override
     public void onClick(View view) {
-        Toast testToast = Toast.makeText(this.getApplicationContext(), "Touch!", Toast.LENGTH_SHORT);
-        testToast.show();
-
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_up);
         if (chance == true) {
             if (view == ans[0] || view == ans[1] || view == ans[2] || view == ans[3]) {
@@ -207,7 +222,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
                     Log.d("Test_Test", "Select Right Ans!");
                     correctSymbol.setVisibility(View.VISIBLE);
                     correctSymbol.startAnimation(animation);
-                    collectNum++;
+                    correctNum++;
                 } else {
                     Log.d("Test_Test", "Select X Ans!");
                     unCorrectSymbol.setVisibility(View.VISIBLE);
@@ -227,9 +242,18 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
                 test_setActivity(solvedNum);
             } else {
                 Log.d("Test_Test", "all ProblemSet is done");
+                score = test_getScore();
+                Intent intent = new Intent(Test_Test.this, Test_Result.class);
+                intent.putExtra("score", score);
+                intent.putExtra("problemsNum", problemsNum);
+                intent.putExtra("correctNum", correctNum);
+                startActivity(intent);
             }
         }
+        test_setCounter();
     }
+
+
 }
 
 class Problem {
