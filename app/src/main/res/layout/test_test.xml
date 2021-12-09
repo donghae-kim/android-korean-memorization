@@ -121,6 +121,7 @@
                 android:orientation="horizontal"
                 android:weightSum="20">
 
+
                 <Button
                     android:id="@+id/test_ans3"
                     android:layout_width="0dp"
@@ -163,14 +164,15 @@
         android:layout_weight="15">
 
         <Button
+            android:id="@+id/test_bookMark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:drawableLeft="@drawable/test_resize_star_full"
             android:layout_weight="5"
             android:layout_margin="10dp"
 
             android:text="즐겨찾기"
-            android:textSize="20dp"
-            android:id="@+id/test_bookMark"/>
+            android:textSize="20dp" />
 
         <Button
             android:layout_width="0dp"

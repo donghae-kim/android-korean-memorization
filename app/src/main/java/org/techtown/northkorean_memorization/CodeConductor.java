@@ -40,8 +40,6 @@ public class CodeConductor extends AppCompatActivity {
     private void updateSQLee(SQLiteDatabase db, String inputTableName, String what, int id, int value) {
         db.execSQL("UPDATE " + tableName + " SET " + what + " = 1 where _id = " + id);
     }
-
-
     /**
      * 암기가 체크된 단어의 개수 리턴 하는 함수
      */
