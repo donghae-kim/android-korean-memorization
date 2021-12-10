@@ -21,6 +21,7 @@
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".Test_Test" />
+        <activity android:name=".Test_Result" />
         <activity android:name=".CodeConductor" />
         <activity android:name=".Study" />
         <activity android:name=".Setting" />

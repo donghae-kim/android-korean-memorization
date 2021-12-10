@@ -32,14 +32,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
-                android:layout_weight="5"
-                android:weightSum="10">
+                android:layout_margin="5dp"
+                android:layout_weight="5">
+
+                <TextView
+                    android:id="@+id/test_all_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="20 / 20"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"/>
+                    android:layout_weight="1"/>
 
+                <TextView
+                    android:id="@+id/test_correct_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_margin="5dp"
+                    android:text="맞은 개수 : 13"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -107,6 +121,7 @@
                 android:orientation="horizontal"
                 android:weightSum="20">
 
+
                 <Button
                     android:id="@+id/test_ans3"
                     android:layout_width="0dp"
@@ -149,14 +164,15 @@
         android:layout_weight="15">
 
         <Button
+            android:id="@+id/test_bookMark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:drawableLeft="@drawable/test_resize_star_full"
             android:layout_weight="5"
             android:layout_margin="10dp"
 
             android:text="즐겨찾기"
-            android:textSize="20dp"
-            android:id="@+id/test_bookMark"/>
+            android:textSize="20dp" />
 
         <Button
             android:layout_width="0dp"

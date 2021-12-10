@@ -1,5 +1,6 @@
 package org.techtown.northkorean_memorization;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,16 +19,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Test_Test extends AppCompatActivity implements View.OnClickListener {
     private boolean chance;
+    private int isBookMark;
     private int problemsNum;
     private int solvedNum;
-    private int collectNum;
+    private int correctNum;
+    private int score;
     private Problem[] problemSet;
+    private int[] indexSet;
 
     private final String tableName = "Words";
     private final String databaseName = "Words.db";
 
     TextView problems;
-    //Button ans1, ans2, ans3, ans4;
+    TextView allCounter;
+    TextView corCounter;
+
     Button ans[] = new Button[4];
     Button bookMark;
     Button passBtn;
@@ -39,12 +45,14 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_test);
-        test_initValue();
 
+        test_initValue();
         PreCreateDB.copyDB(this);
 
         // View 객체 획득
         test_getView();
+        test_setCounter();
+
 
         problemSet = test_buildProblem(problemsNum, 1, false);
 
@@ -57,7 +65,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         chance = true;
         problemsNum = 20;
         solvedNum = 0;
-        collectNum = 0;
+        correctNum = 0;
         problemSet = null;
     }
 
@@ -80,7 +88,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         int mid = loadedSize / 2;
 
-        int[] indexSet = new int[problemSize];
+        indexSet = new int[problemSize];
         test_rand_noDuple(indexSet, problemSize, loadedSize);
 
         Problem[] problemset = new Problem[problemSize];
@@ -110,6 +118,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private Problem test_makeProblem(Cursor cursor, int index, int loadedSize, int from, int to) {
         int id = cursor.getInt(0);
         int field = cursor.getInt(4);
+        int bookMark = cursor.getInt(5);
         String problem = cursor.getString(from);
         String correct = cursor.getString(to);
 
@@ -126,7 +135,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         String unCorrect3 = cursor.getString(to);
 
         int correctPos = (int)(Math.random() * 4);
-        return (new Problem(id, field, problem, correct, unCorrect1, unCorrect2, unCorrect3, correctPos));
+        return (new Problem(id, field, bookMark, problem, correct, unCorrect1, unCorrect2, unCorrect3, correctPos));
     }
 
     private void test_rand_noDuple(int[] arr, int arrSize, int range) {
@@ -155,6 +164,9 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
             if(i != problemSet[problemNumber].correctPos)
                 ans[i].setText(problemSet[problemNumber].unCorrect[unCorIndex++]);
         }
+
+        isBookMark = problemSet[problemNumber].bookMark;
+        test_setBookMark(isBookMark);
     }
 
     /**
@@ -163,6 +175,9 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
      */
     private void test_getView() {
         problems = (TextView) findViewById(R.id.test_problems);
+
+        allCounter = (TextView) findViewById(R.id.test_all_counter);
+        corCounter = (TextView) findViewById(R.id.test_correct_counter);
 
         ans[0] = (Button) findViewById(R.id.test_ans1);
         ans[1] = (Button) findViewById(R.id.test_ans2);
@@ -194,12 +209,50 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         nextBtn.setOnClickListener(this);
     }
 
+    private int test_getScore() {
+        return (int)(((float)correctNum / solvedNum) * 100);
+    }
+
+    private void test_setCounter() {
+        allCounter.setText("( "+ solvedNum +" / " + problemsNum + " )");
+        corCounter.setText("" + correctNum);
+    }
+
+    private void test_toggleBookMark() {
+        Log.d("Test_Test", "bookMark is toggled");
+
+        if(isBookMark != 0)
+            test_setBookMark(0);
+        else
+            test_setBookMark(1);
+    }
+
+    private void test_setBookMark(int value) {
+        if(value != 0) {
+            bookMark.setCompoundDrawablesWithIntrinsicBounds(R.drawable.test_resize_star_full, 0, 0, 0);
+            isBookMark = 1;
+        }
+        else {
+            bookMark.setCompoundDrawablesWithIntrinsicBounds(R.drawable.test_resize_star_blank, 0, 0, 0);
+            isBookMark = 0;
+        }
+    }
+
+    private void test_saveBookMark(int id, int value) {
+        Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        db.execSQL("UPDATE " + tableName + " SET BookMark = " + value + " where _id = " + id);
+        db.close();
+        Log.d("Test_Test", "bookMark is saved : value = " + value);
+    }
+
     @Override
     public void onClick(View view) {
-        Toast testToast = Toast.makeText(this.getApplicationContext(), "Touch!", Toast.LENGTH_SHORT);
-        testToast.show();
-
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_up);
+        if (view == bookMark)
+            test_toggleBookMark();
+
         if (chance == true) {
             if (view == ans[0] || view == ans[1] || view == ans[2] || view == ans[3]) {
                 chance = false;
@@ -207,17 +260,22 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
                     Log.d("Test_Test", "Select Right Ans!");
                     correctSymbol.setVisibility(View.VISIBLE);
                     correctSymbol.startAnimation(animation);
-                    collectNum++;
+                    correctNum++;
                 } else {
                     Log.d("Test_Test", "Select X Ans!");
                     unCorrectSymbol.setVisibility(View.VISIBLE);
                     unCorrectSymbol.startAnimation(animation);
                 }
                 nextBtn.setVisibility(View.VISIBLE);
-
-                ++solvedNum;
+            }
+            if(view == passBtn) {
+                chance = false;
+                nextBtn.setVisibility(View.VISIBLE);
             }
         } else if (view == nextBtn) {
+            test_saveBookMark(problemSet[solvedNum].id, isBookMark);
+
+            ++solvedNum;
             if (solvedNum < problemsNum) {
                 chance = true;
                 correctSymbol.setVisibility(View.INVISIBLE);
@@ -227,22 +285,34 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
                 test_setActivity(solvedNum);
             } else {
                 Log.d("Test_Test", "all ProblemSet is done");
+                score = test_getScore();
+                Intent intent = new Intent(Test_Test.this, Test_Result.class);
+                intent.putExtra("score", score);
+                intent.putExtra("problemsNum", problemsNum);
+                intent.putExtra("correctNum", correctNum);
+                startActivity(intent);
+                finish();
             }
         }
+        test_setCounter();
     }
+
+
 }
 
 class Problem {
     int id;
     int field;
+    int bookMark;
     String problem;
     String correct;
     String[] unCorrect = new String[3];
     int correctPos;
 
-    public Problem(int id, int field, String problem, String correct, String unCorrect0, String unCorrect1, String unCorrect2, int correctPos) {
+    public Problem(int id, int field, int bookMark, String problem, String correct, String unCorrect0, String unCorrect1, String unCorrect2, int correctPos) {
         this.id = id;
         this.field = field;
+        this.bookMark = bookMark;
         this.problem = problem;
         this.correct = correct;
         this.unCorrect[0] = unCorrect0;
@@ -252,6 +322,7 @@ class Problem {
     }
 
     public void printAll() {
-        Log.d("Test_Test", id + " " + field + " "+ problem + " " + correct + " " + unCorrect[0] + " " + unCorrect[1] + " " + unCorrect[2] + " " + correctPos);
+        Log.d("Test_Test", id + " " + field + " " + bookMark + " " + problem +
+                " " + correct + " " + unCorrect[0] + " " + unCorrect[1] + " " + unCorrect[2] + " " + correctPos);
     }
 }
