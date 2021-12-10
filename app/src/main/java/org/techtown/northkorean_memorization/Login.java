@@ -2,6 +2,7 @@ package org.techtown.northkorean_memorization;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,11 +11,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -28,8 +36,14 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.DarkTheme);
+        } else {
+            setTheme(R.style.LightTheme);
+        }
 
-//        firebaseAuth =  FirebaseAuth.getInstance();
+
+        firebaseAuth =  FirebaseAuth.getInstance();
         //버튼 등록하기
         mResigettxt = findViewById(R.id.registerID);
         mLoginBtn = findViewById(R.id.loginBtn);
@@ -58,8 +72,13 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                     Intent intent = new Intent(Login.this, MainActivity.class);
+                                    intent.setClass(Login.this, MainActivity.class);
+                                    intent.putExtra("EMAIL", user.getEmail());
                                     startActivity(intent);
+                                    Toast.makeText(Login.this, "로그인 완료", Toast.LENGTH_SHORT).show();
+
 
                                 }else{
                                     Toast.makeText(Login.this,"로그인 오류",Toast.LENGTH_SHORT).show(); //로그인 오류나면 실행 중지됨 추후 수정
@@ -69,5 +88,11 @@ public class Login extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    String getUserEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user.getEmail();
     }
 }

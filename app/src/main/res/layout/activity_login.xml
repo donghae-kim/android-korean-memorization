@@ -81,5 +81,6 @@
             android:text="가입하기"
             android:layout_marginLeft="10dp"
             android:textColor="#FF2A2A"/>
+
     </LinearLayout>
 </LinearLayout>

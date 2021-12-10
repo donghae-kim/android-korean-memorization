@@ -19,6 +19,18 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:gravity="left"
+            android:textSize="15dp"
+            android:hint="이름"
+            android:inputType="text"
+            android:privateImeOptions="defaultInputmode=korean"/>
+
+        <EditText
             android:id="@+id/user_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

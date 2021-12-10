@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,11 +23,13 @@ import java.util.HashMap;
 
 public class Register extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_register);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("계정 만들기");
@@ -51,9 +54,10 @@ public class Register extends AppCompatActivity {
 
 
     private void signUp() {
+        String name = ((EditText) findViewById(R.id.user_name)).getText().toString();
         String id = ((EditText) findViewById(R.id.user_id)).getText().toString();
-        String password = ((EditText) findViewById(R.id.user_id)).getText().toString();
-        String passwordCheck = ((EditText) findViewById(R.id.user_id)).getText().toString();
+        String password = ((EditText) findViewById(R.id.user_password)).getText().toString();
+        String passwordCheck = ((EditText) findViewById(R.id.user_password_check)).getText().toString();
 
         if (id.length() > 0 && password.length() > 0 && passwordCheck.length() > 0) {
             if (password.equals(passwordCheck)) {
@@ -70,16 +74,17 @@ public class Register extends AppCompatActivity {
                                     HashMap<Object,String> hashMap = new HashMap<>();
                                     hashMap.put("uid",uid);
                                     hashMap.put("email", id);
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference reference = database.getReference();
-                                    reference.child("Users").push().setValue(hashMap);
+                                    hashMap.put("name", name);
+                                    database = FirebaseDatabase.getInstance();
+                                    reference = database.getReference();
+                                    reference.child("User").push().setValue(hashMap);
 
                                     startActivity(new Intent(Register.this, Login.class));
                                     Toast.makeText(Register.this, "회원가입에 성공했습니다.", Toast.LENGTH_SHORT).show();
 
                                 } else {
                                     if (task.getException().toString() != null) {
-                                        Toast.makeText(Register.this, "이미 존재하는 아이디 입니다.", Toast.LENGTH_SHORT).show(); // 이미 존재하는 아이디
+                                        Toast.makeText(Register.this, "회원가입에 실패했습니다.", Toast.LENGTH_SHORT).show(); // 이미 존재하는 아이디
                                     }
                                 }
                             }

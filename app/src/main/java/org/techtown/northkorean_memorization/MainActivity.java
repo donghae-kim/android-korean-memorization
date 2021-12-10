@@ -2,11 +2,27 @@ package org.techtown.northkorean_memorization;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private Button study;
@@ -14,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private Button myWord;
     private Button setting;
     private Button registerID;
+    private TextView userName;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +83,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         registerID = findViewById(R.id.registerID); //임시 버튼임 ㅇ
-        registerID.setOnClickListener(new View.OnClickListener(){
+        registerID.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Login.class);
                 startActivity(intent);
             }
         });
+
+        userName = (TextView)findViewById(R.id.name);
+        Intent intent = getIntent();
+        String userEmail = intent.getStringExtra("EMAIL");
+        if(userEmail =="")
+            userName.setText("null");
+        else
+            userName.setText(userEmail);
+
     }
 }
