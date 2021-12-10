@@ -81,7 +81,7 @@ public class Login extends AppCompatActivity {
 
 
                                 }else{
-                                    Toast.makeText(Login.this,"로그인 오류",Toast.LENGTH_SHORT).show(); //로그인 오류나면 실행 중지됨 추후 수정
+                                    Toast.makeText(Login.this,"로그인 오류",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
