@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
+
     android:layout_margin="16dp">
 
     <TextView
@@ -16,14 +17,16 @@
         android:textColor="#F00"
 
         android:gravity="center"
-        android:id="@+id/test_score"/>
+        android:id="@+id/score_score"/>
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="1dp"
+        android:layout_gravity="center"
         android:background="#000"/>
 
     <TextView
+        android:id="@+id/score_string"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="40"
@@ -31,5 +34,6 @@
         android:text="동무, %d개중에 %d개를 맞추셨습니다."
         android:textSize="20dp"
         android:gravity="center"/>
+
 
 </LinearLayout>

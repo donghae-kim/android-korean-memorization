@@ -11,7 +11,12 @@ import androidx.fragment.app.Fragment;
 
 public class Test_ScoreFragment extends Fragment {
     private TextView score;
-    int resultScore;
+    private TextView Text_string;
+
+    private int resultScore;
+    private int correctNum;
+    private int problemNum;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.test_score, container, false);
@@ -22,7 +27,13 @@ public class Test_ScoreFragment extends Fragment {
 
         Bundle bundle = getArguments();
         resultScore = bundle.getInt("score");
-        score = view.findViewById(R.id.test_score);
+        correctNum = bundle.getInt("correctNum");
+        problemNum = bundle.getInt("problemNum");
+
+        score = view.findViewById(R.id.score_score);
+        Text_string = view.findViewById(R.id.score_string);
+
         score.setText("" + resultScore);
+        Text_string.setText(problemNum + "문제 중에 " + correctNum + "문제를 맞추셨습니다!");
     }
 }

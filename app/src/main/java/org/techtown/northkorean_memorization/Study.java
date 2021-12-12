@@ -273,11 +273,6 @@ public class Study extends AppCompatActivity {
         db.execSQL("UPDATE " + tableName + " SET " + what +  "= "+value+" where _id = " + id);
     }
 
-
-
-
-
-
 }
 
 

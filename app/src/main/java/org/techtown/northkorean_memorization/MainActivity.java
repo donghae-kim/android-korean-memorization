@@ -3,11 +3,13 @@ package org.techtown.northkorean_memorization;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -24,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
     private Button study;
     private Button test;
@@ -31,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private Button setting;
     private Button registerID;
     private TextView userName;
+
     private DatabaseReference mDatabase;
+
+    AlertDialog testDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +63,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         test = findViewById(R.id.test);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Test_Test.class);
-                startActivity(intent);
-            }
-        });
 
         myWord = findViewById(R.id.myWord);
         myWord.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +98,19 @@ public class MainActivity extends AppCompatActivity {
             userName.setText("null");
         else
             userName.setText(userEmail);
+    }
 
+    public void show_default_dialog(View view) {
+        Log.d("main_dialog", "btn pressed");
+
+        String path = "/data/data/"+ getPackageName() + "/databases/Test_Saved.db";
+        File dbFile = new File(path);
+
+        Test_Dialog.getInstance(this).showDefaultDialog();
+
+        //if(dbFile != null)
+        //    Test_Dialog_Saved.getInstance(this).showDefaultDialog();
+        //else
+        //    Test_Dialog.getInstance(this).showDefaultDialog();
     }
 }

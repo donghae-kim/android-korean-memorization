@@ -26,9 +26,13 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private int score;
     private Problem[] problemSet;
     private int[] indexSet;
+    private int[] isCorrect;
 
     private final String tableName = "Words";
     private final String databaseName = "Words.db";
+
+    private int field;
+    private boolean range;
 
     TextView problems;
     TextView allCounter;
@@ -51,14 +55,24 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         // View 객체 획득
         test_getView();
+        test_getIntent();
+
+        problemSet = test_buildProblem(problemsNum, field, range);
         test_setCounter();
-
-
-        problemSet = test_buildProblem(problemsNum, 1, false);
 
         // Button 이벤트 등록
         test_setClick();
         test_setActivity(0);
+    }
+
+    private void test_getIntent() {
+        Intent intent = getIntent();
+
+        problemsNum = intent.getIntExtra("num", 20);
+        field = intent.getIntExtra("field", 0);
+        range = intent.getBooleanExtra("range", false);
+
+        Log.d("Test_Test", problemsNum + " " + field + " " + range);
     }
 
     private void test_initValue() {
@@ -73,12 +87,11 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         Test_DatabaseAdapter.DatabaseHelper helper = new Test_DatabaseAdapter.DatabaseHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        String conditionWhere = " where Field = " + section;
-        if (memExclude)
-            conditionWhere += "Memorized = 0";
+        String conditionWhere = test_buildString(section, memExclude);
+        Log.d("Test_Test", conditionWhere);
 
-        //Cursor cursor = db.rawQuery("select * from " + tableName + conditionWhere, null);
-        Cursor cursor = db.rawQuery("select * from Words", null);
+        Cursor cursor = db.rawQuery("select * from " + tableName + conditionWhere, null);
+        //Cursor cursor = db.rawQuery("select * from Words", null);
         int loadedSize = cursor.getCount();
 
         Log.d("Test_Test", "Loaded " + loadedSize + " rows");
@@ -86,9 +99,9 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
         if (loadedSize < problemSize)
             problemSize = loadedSize;
 
-        int mid = loadedSize / 2;
-
         indexSet = new int[problemSize];
+        isCorrect = new int[problemSize];
+
         test_rand_noDuple(indexSet, problemSize, loadedSize);
 
         Problem[] problemset = new Problem[problemSize];
@@ -113,6 +126,21 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         db.close();
         return problemset;
+    }
+
+    private String test_buildString(int section, boolean memExclude) {
+        String conditionWhere = "";
+
+        if (section != 0 || memExclude) {
+            conditionWhere = " where";
+            if (section != 0)
+                conditionWhere += " Field = " + section;
+            if (section != 0 && memExclude)
+                conditionWhere += " AND";
+            if (memExclude)
+                conditionWhere += " Memorized = 0";
+        }
+        return conditionWhere;
     }
 
     private Problem test_makeProblem(Cursor cursor, int index, int loadedSize, int from, int to) {
@@ -258,11 +286,13 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
                 chance = false;
                 if (view == ans[problemSet[solvedNum].correctPos]) {
                     Log.d("Test_Test", "Select Right Ans!");
+                    isCorrect[solvedNum] = 1;
                     correctSymbol.setVisibility(View.VISIBLE);
                     correctSymbol.startAnimation(animation);
                     correctNum++;
                 } else {
                     Log.d("Test_Test", "Select X Ans!");
+                    isCorrect[solvedNum] = 0;
                     unCorrectSymbol.setVisibility(View.VISIBLE);
                     unCorrectSymbol.startAnimation(animation);
                 }
@@ -286,15 +316,25 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
             } else {
                 Log.d("Test_Test", "all ProblemSet is done");
                 score = test_getScore();
-                Intent intent = new Intent(Test_Test.this, Test_Result.class);
-                intent.putExtra("score", score);
-                intent.putExtra("problemsNum", problemsNum);
-                intent.putExtra("correctNum", correctNum);
+                Intent intent = test_setIntent();
                 startActivity(intent);
                 finish();
             }
         }
         test_setCounter();
+    }
+
+    private Intent test_setIntent() {
+        Intent intent = new Intent(Test_Test.this, Test_Result.class);
+
+        intent.putExtra("score", score);
+        intent.putExtra("problemsNum", problemsNum);
+        intent.putExtra("correctNum", correctNum);
+
+        intent.putExtra("indexSet", indexSet);
+        intent.putExtra("isCorrect", isCorrect);
+
+        return intent;
     }
 
 
