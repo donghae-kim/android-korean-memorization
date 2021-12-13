@@ -169,6 +169,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
     private void test_rand_noDuple(int[] arr, int arrSize, int range) {
         int size = 0;
         int temp = 0;
+
         while (size < arrSize) {
             temp = (int) (Math.random() * range);
             for (int i = 0; i < size; ++i) {
@@ -272,7 +273,7 @@ public class Test_Test extends AppCompatActivity implements View.OnClickListener
 
         db.execSQL("UPDATE " + tableName + " SET BookMark = " + value + " where _id = " + id);
         db.close();
-        Log.d("Test_Test", "bookMark is saved : value = " + value);
+        Log.d("Test_Test", id+ "'s bookMark is saved : value = " + value);
     }
 
     @Override

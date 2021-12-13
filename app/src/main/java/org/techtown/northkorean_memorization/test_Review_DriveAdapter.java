@@ -107,6 +107,7 @@ public class test_Review_DriveAdapter extends android.widget.ArrayAdapter<Test_D
     void sss(int id, CheckBox memory, CheckBox bookMark) {
         int a = asd(id);
 
+        Log.d("Test_Review", "a is saved : value = " + a);
         if (a == 1) memory.setChecked(true);
         else if (a == 2) bookMark.setChecked(true);
         else if (a == 3) {
@@ -125,6 +126,7 @@ public class test_Review_DriveAdapter extends android.widget.ArrayAdapter<Test_D
         int a = cursor.getInt(6);
         int b = cursor.getInt(5);
 
+        Log.d("Test_Review",  cursor.getString(1) + " " + cursor.getString(2) + " " + a + " " + b);
         db.close();
 
         if(a + b == 2)

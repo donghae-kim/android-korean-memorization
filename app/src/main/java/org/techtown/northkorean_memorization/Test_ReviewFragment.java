@@ -45,14 +45,15 @@ public class Test_ReviewFragment extends Fragment {
 
         ArrayList<Test_DriveVO> data = new ArrayList<>();
         for (int i = 0; i < indexSet.length; ++i) {
-            Cursor cursor = db.rawQuery("select * from " + tableName + " where _id = " + indexSet[i], null);
+            Log.d("Test_Test", indexSet[i] + " indexSet[i]");
+            int index = indexSet[i] + 1;
+
+            Cursor cursor = db.rawQuery("select * from " + tableName + " where _id = " + index, null);
             cursor.moveToNext();
-            int size = cursor.getCount();
-            Log.d("Test_Test", "ProblemSet " + size );
 
             Test_DriveVO vo = new Test_DriveVO();
             vo.isCorrect = (isCorrect[i] != 0)? true : false;
-            vo.num = i;
+            vo.num = i + 1;
             vo.north = cursor.getString(1);
             vo.south = cursor.getString(2);
             vo.isMemory = (cursor.getInt(6) != 0)? true : false;

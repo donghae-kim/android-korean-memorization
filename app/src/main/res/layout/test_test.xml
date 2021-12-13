@@ -74,7 +74,7 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50">
@@ -85,6 +85,7 @@
             android:weightSum="20">
 
             <TableRow
+                android:id="@+id/test_table1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
@@ -99,7 +100,7 @@
                     android:layout_margin="5dp"
 
                     android:text="Ans1"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:id="@+id/test_ans1"/>
 
                 <Button
@@ -109,7 +110,7 @@
                     android:layout_margin="5dp"
 
                     android:text="Ans2"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:id="@+id/test_ans2"/>
             </TableRow>
 
@@ -130,7 +131,7 @@
 
                     android:layout_weight="10"
                     android:text="Ans3"
-                    android:textSize="25dp" />
+                    android:textSize="20dp" />
 
                 <Button
                     android:id="@+id/test_ans4"
@@ -139,8 +140,8 @@
                     android:layout_margin="5dp"
 
                     android:layout_weight="10"
-                    android:text="Ans4"
-                    android:textSize="25dp"/>
+                    android:text="AN2"
+                    android:textSize="20dp"/>
             </TableRow>
         </TableLayout>
 
@@ -148,14 +149,13 @@
             android:id="@+id/test_nextBtn"
             android:layout_width="70dp"
             android:layout_height="70dp"
-
-            android:layout_gravity="center"
             android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
             android:background="@drawable/shape_circle"
             android:src="@drawable/next_button"
             android:visibility="invisible"/>
 
-    </FrameLayout>
+    </RelativeLayout>
 
     <TableRow
         android:layout_width="match_parent"

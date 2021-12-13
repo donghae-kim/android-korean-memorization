@@ -86,7 +86,7 @@ public class Test_Dialog extends Dialog implements View.OnClickListener {
             Intent intent = new Intent(getContext(), Test_Test.class);
             intent.putExtra("field", field);
             intent.putExtra("range", range);
-            intent.putExtra("num", 4);
+            intent.putExtra("num", 20);
 
             getContext().startActivity(intent);
             dismiss();
