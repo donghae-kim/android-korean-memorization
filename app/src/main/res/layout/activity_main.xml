@@ -36,7 +36,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/name" />
+            android:id="@+id/name"
+            android:text="null"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -98,15 +99,28 @@
 
         <Button
             android:id="@+id/registerID"
-            android:text="로그인"
             android:layout_width="175dp"
             android:layout_height="110dp"
-            android:layout_alignRight="@+id/myWord"
-            android:background="@drawable/solid_button"
             android:layout_below="@id/myWord"
+            android:layout_alignRight="@+id/myWord"
             android:layout_marginTop="10dp"
+            android:background="@drawable/solid_button"
+            android:text="로그인"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc"/>
+            app:backgroundTint="#dcdcdc" />
+
+        <Button
+            android:text="로그아웃ㅋ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logoutBtn"
+            android:background="@drawable/solid_button"
+            android:textColor="?attr/metaTextColor"
+            app:backgroundTint="#dcdcdc"
+            android:layout_below="@+id/registerID"
+            android:layout_alignRight="@+id/registerID"
+            android:layout_margin="10dp"
+            />
 
     </RelativeLayout>
 </LinearLayout>

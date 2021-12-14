@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.preference.PreferenceActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Setting extends AppCompatActivity {
+    private Button logout;
+    private TextView userId;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +29,8 @@ public class Setting extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_setting);
-//
+
+
         TextView tvChangeTheme = findViewById(R.id.darkMode);
         tvChangeTheme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,5 +46,6 @@ public class Setting extends AppCompatActivity {
                 startActivity(new Intent(Setting.this, Setting.this.getClass()));
             }
         });
+
     }
 }
