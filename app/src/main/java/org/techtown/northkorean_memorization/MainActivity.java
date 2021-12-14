@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Button setting;
     private Button registerID;
     private TextView userName;
+    private Button logout;
 
     private DatabaseReference mDatabase;
 
@@ -95,6 +97,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String userEmail = intent.getStringExtra("EMAIL");
         userName.setText(userEmail);
+
+
+        logout = findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user != null){
+                    FirebaseAuth.getInstance().signOut();
+                    userName.setText(null);
+                    Toast.makeText(MainActivity.this, "로그아웃 완료", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "로그인 되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
 
     public void show_default_dialog(View view) {
