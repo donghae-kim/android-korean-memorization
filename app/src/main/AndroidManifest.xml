@@ -21,13 +21,20 @@
         <activity android:name=".Register"
             android:noHistory="true">
         </activity>
-        <activity android:name=".Login" />
-        <activity android:name=".Test_Test" />
-        <activity android:name=".Test_Result" />
-        <activity android:name=".CodeConductor" />
-        <activity android:name=".Study" />
-        <activity android:name=".Setting" />
-        <activity android:name=".MyWord" />
+        <activity android:name=".Login"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Test_Test"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Test_Result"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".CodeConductor"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Study"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Setting"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".MyWord"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
         <activity
             android:name=".Splash"

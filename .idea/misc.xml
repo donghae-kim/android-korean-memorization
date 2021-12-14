@@ -16,15 +16,13 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization112/app/src/main/res/layout/study_activity_main.xml" value="0.3056338028169014" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization112/app/src/main/res/layout/study_single_item.xml" value="0.184375" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization112/app/src/main/res/layout/test_review.xml" value="0.184375" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization123/app/src/main/res/layout/activity_myword.xml" value="0.21739130434782608" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization123/app/src/main/res/layout/activity_ranking.xml" value="0.21739130434782608" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization123/app/src/main/res/layout/study_activity_main.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization4/app/src/main/res/layout/activity_main.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization4/app/src/main/res/layout/study_activity_main.xml" value="0.4" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/NorthKorean_Memorization4/app/src/main/res/layout/study_single_item.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Arkady/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_review.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/Arkady/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_score.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/Arkady/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_test.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/J/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/shape_circle.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/solid_button.xml" value="0.4625" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/test_resize_star_blank.xml" value="0.6591796875" />
@@ -56,7 +54,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
