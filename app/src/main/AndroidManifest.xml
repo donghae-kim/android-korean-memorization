@@ -29,8 +29,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".CodeConductor"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Study"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".Study"/>
         <activity android:name=".Setting"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".MyWord"
