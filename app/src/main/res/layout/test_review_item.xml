@@ -35,7 +35,7 @@
         android:gravity="center_vertical"
         android:padding="0dp"
         android:text="북한어"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/review_south"
@@ -44,7 +44,7 @@
         android:layout_weight="5"
         android:gravity="center_vertical"
         android:text="남한어"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
 
     <CheckBox
         android:id="@+id/review_memory"
