@@ -18,7 +18,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity android:name=".Register" />
+        <activity android:name=".Register"
+            android:noHistory="true">
+        </activity>
         <activity android:name=".Login" />
         <activity android:name=".Test_Test" />
         <activity android:name=".Test_Result" />

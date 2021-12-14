@@ -94,10 +94,7 @@ public class MainActivity extends AppCompatActivity {
         userName = (TextView)findViewById(R.id.name);
         Intent intent = getIntent();
         String userEmail = intent.getStringExtra("EMAIL");
-        if(userEmail =="")
-            userName.setText("null");
-        else
-            userName.setText(userEmail);
+        userName.setText(userEmail);
     }
 
     public void show_default_dialog(View view) {

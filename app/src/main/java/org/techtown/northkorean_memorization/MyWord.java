@@ -22,7 +22,7 @@ public class MyWord extends AppCompatActivity {
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myword);
+//        setContentView(R.layout.activity_myword);
         PreCreateDB.copyDB(this);
         databaseAdapter = new Test_DatabaseAdapter(this);
         final SimpleCursorAdapter first_graph = databaseAdapter.graphmake();
@@ -36,9 +36,9 @@ public class MyWord extends AppCompatActivity {
 
         final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.MyWordListViewFromDB();
 
-        ListView listvContact = findViewById(R.id.lvmyword);
+//        ListView listvContact = findViewById(R.id.lvmyword);
 
-        listvContact.setAdapter(simpleCursorAdapter);
+//        listvContact.setAdapter(simpleCursorAdapter);
     }
 
 

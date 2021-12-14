@@ -24,24 +24,16 @@
         <entry key="..\:/Users/Arkady/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_test.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/shape_circle.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/solid_button.xml" value="0.4625" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/test_resize_bookmark.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/test_resize_star_blank.xml" value="0.6591796875" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/drawable/test_resize_star_full.xml" value="0.2708333333333333" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/activity_myword.xml" value="0.2546875" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/activity_register.xml" value="0.2546875" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/main_dialog_layout.xml" value="0.3828571428571429" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/main_dialog_saved.xml" value="0.2546875" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/study_activity_main.xml" value="0.26197916666666665" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/study_single_item.xml" value="0.25" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_resize_star_full.xml" value="0.26458333333333334" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_review.xml" value="0.1838768115942029" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_review_item.xml" value="0.6285714285714287" />
-        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_score.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_score.xml" value="0.12228260869565218" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_test.xml" value="0.42857142857142855" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/layout/test_viewpager2.xml" value="0.1" />
         <entry key="..\:/Users/MK.2/Documents/GitHub/NorthKorean_Memorization/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14739583333333334" />
+        <entry key="app/src/main/res/drawable/shape_circle.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/solid_button.xml" value="0.14739583333333334" />
+        <entry key="app/src/main/res/drawable/userimage.xml" value="0.2984375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3553072129119301" />
         <entry key="app/src/main/res/layout/activity_ranking.xml" value="0.3098958333333333" />
@@ -54,7 +46,9 @@
         <entry key="app/src/main/res/layout/study_activity_main.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/study_single_item.xml" value="0.13125" />
         <entry key="app/src/main/res/layout/test_review.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/test_viewpager2.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/tewst.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2984375" />
         <entry key="app/src/main/res/xml/setting.xml" value="0.13125" />
       </map>
     </option>
