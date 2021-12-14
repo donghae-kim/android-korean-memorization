@@ -2,19 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?attr/bgColor">
 
-    <TextView
+    <Button
         android:id="@+id/darkMode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:text="Change Theme"
-        android:textColor="#A8A8A8"
-        android:textSize="16sp" />
-
-
+        android:layout_marginTop="15dp"
+        android:background="@drawable/solid_button"
+        android:text="DarkMode"
+        android:textColor="?attr/metaTextColor"
+        android:textSize="16sp"
+        app:backgroundTint="#FFFFFF"
+        />
 
 
 </RelativeLayout>

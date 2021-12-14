@@ -3,83 +3,80 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/bgColor"
     android:orientation="vertical"
-    android:weightSum="20"
-    android:background="#F0F0F0">
+    android:weightSum="20">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
         android:layout_margin="20dp"
+        android:layout_weight="5"
         android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/kim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/kim"
                 android:adjustViewBounds="true"
                 android:maxWidth="250dp"
-                android:maxHeight="160dp"/>
+                android:maxHeight="160dp"
+                android:src="@drawable/kim" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-                <org.techtown.northkorean_memorization.OutlineTextView
-                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                <org.techtown.northkorean_memorization.OutlineTextView xmlns:textTitle="http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:text="북한"
                     android:textColor="@color/white"
                     android:textSize="43dp"
-                    android:includeFontPadding="false"
                     textTitle:textStroke="true"
                     textTitle:textStrokeColor="@color/black"
-                    textTitle:textStrokeWidth="6.0"/>
+                    textTitle:textStrokeWidth="6.0" />
 
-                <org.techtown.northkorean_memorization.OutlineTextView
-                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                <org.techtown.northkorean_memorization.OutlineTextView xmlns:textTitle="http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
                     android:text="  문화어"
-                    android:includeFontPadding="false"
                     android:textColor="@color/white"
                     android:textSize="35dp"
                     textTitle:textStroke="true"
                     textTitle:textStrokeColor="@color/black"
-                    textTitle:textStrokeWidth="6.0"/>
+                    textTitle:textStrokeWidth="6.0" />
 
 
-                <org.techtown.northkorean_memorization.OutlineTextView
-                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                <org.techtown.northkorean_memorization.OutlineTextView xmlns:textTitle="http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="암기앱"
                     android:includeFontPadding="false"
+                    android:text="암기앱"
                     android:textColor="@color/white"
                     android:textSize="35dp"
                     textTitle:textStroke="true"
                     textTitle:textStrokeColor="@color/black"
-                    textTitle:textStrokeWidth="6.0"/>
+                    textTitle:textStrokeWidth="6.0" />
             </LinearLayout>
         </LinearLayout>
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/name"
-            android:text="null"
-            android:layout_gravity="right|top"/>
+            android:layout_gravity="right|top"
+            android:text="null" />
     </FrameLayout>
 
     <RelativeLayout
@@ -91,31 +88,29 @@
             android:id="@+id/study"
             android:layout_width="175dp"
             android:layout_height="120dp"
-
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-
             android:background="@drawable/solid_button"
             android:text="학 습"
-            android:textSize="25dp"
             android:textColor="?attr/metaTextColor"
+            android:textSize="25dp"
             app:backgroundTint="#FFFFFF" />
 
         <Button
             android:id="@+id/test"
             android:layout_width="175dp"
             android:layout_height="120dp"
-            android:layout_toRightOf="@+id/study"
-            android:layout_alignBottom="@+id/study"
             android:layout_alignTop="@+id/study"
+            android:layout_alignBottom="@+id/study"
             android:layout_marginRight="20dp"
+            android:layout_toRightOf="@+id/study"
             android:background="@drawable/solid_button"
             android:onClick="show_default_dialog"
             android:text="테스트"
+            android:textColor="?attr/metaTextColor"
             android:textSize="25dp"
-            app:backgroundTint="#FFFFFF"
-            android:textColor="?attr/metaTextColor"/>
+            app:backgroundTint="#FFFFFF" />
 
         <Button
             android:id="@+id/myWord"
@@ -140,8 +135,8 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="설 정"
-            android:textSize="20dp"
             android:textColor="?attr/metaTextColor"
+            android:textSize="20dp"
             app:backgroundTint="#FFFFFF" />
 
         <Button
@@ -153,8 +148,8 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="로그인"
-            android:textSize="20dp"
             android:textColor="?attr/metaTextColor"
+            android:textSize="20dp"
             app:backgroundTint="#FFFFFF" />
 
         <Button

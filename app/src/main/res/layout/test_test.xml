@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-
     android:layout_margin="16dp"
+
+    android:orientation="vertical"
     android:weightSum="100">
 
     <FrameLayout
@@ -19,57 +19,57 @@
             android:weightSum="35">
 
             <TextView
+                android:id="@+id/test_problems"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="30"
 
-                android:text="Problems"
-                android:textSize="48dp"
+                android:layout_weight="30"
                 android:gravity="center"
-                android:id="@+id/test_problems"/>
+                android:text="Problems"
+                android:textSize="48dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
                 android:layout_margin="5dp"
-                android:layout_weight="5">
+                android:layout_weight="5"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/test_all_counter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="20 / 20"/>
+                    android:text="20 / 20" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/test_correct_counter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:layout_margin="5dp"
-                    android:text="맞은 개수 : 13"/>
+                    android:gravity="center"
+                    android:text="맞은 개수 : 13" />
             </LinearLayout>
 
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/test_correct_symbol"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/correct_symbol"
-            android:id="@+id/test_correct_symbol"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <ImageView
+            android:id="@+id/test_uncorrect_symbol"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/uncorrect_symbol"
-            android:id="@+id/test_uncorrect_symbol"
             android:visibility="invisible" />
 
     </FrameLayout>
@@ -88,30 +88,30 @@
                 android:id="@+id/test_table1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="horizontal"
-
                 android:layout_weight="10"
+
+                android:orientation="horizontal"
                 android:weightSum="20">
 
                 <Button
+                    android:id="@+id/test_ans1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="10"
                     android:layout_margin="5dp"
 
+                    android:layout_weight="10"
                     android:text="Ans1"
-                    android:textSize="20dp"
-                    android:id="@+id/test_ans1"/>
+                    android:textSize="20dp" />
 
                 <Button
+                    android:id="@+id/test_ans2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="10"
                     android:layout_margin="5dp"
 
+                    android:layout_weight="10"
                     android:text="Ans2"
-                    android:textSize="20dp"
-                    android:id="@+id/test_ans2"/>
+                    android:textSize="20dp" />
             </TableRow>
 
             <TableRow
@@ -141,7 +141,7 @@
 
                     android:layout_weight="10"
                     android:text="AN2"
-                    android:textSize="20dp"/>
+                    android:textSize="20dp" />
             </TableRow>
         </TableLayout>
 
@@ -149,39 +149,39 @@
             android:id="@+id/test_nextBtn"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="fitCenter"
             android:layout_centerInParent="true"
             android:background="@drawable/shape_circle"
+            android:scaleType="fitCenter"
             android:src="@drawable/next_button"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="15">
+        android:layout_weight="15"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/test_bookMark"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:drawableLeft="@drawable/test_resize_star_full"
-            android:layout_weight="5"
             android:layout_margin="10dp"
+            android:layout_weight="5"
+            android:drawableLeft="@drawable/test_resize_star_full"
 
             android:text="즐겨찾기"
             android:textSize="20dp" />
 
         <Button
+            android:id="@+id/test_passBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5"
             android:layout_margin="10dp"
 
+            android:layout_weight="5"
             android:text="잘 모르겠어요"
-            android:textSize="20dp"
-            android:id="@+id/test_passBtn"/>
+            android:textSize="20dp" />
     </TableRow>
 </LinearLayout>

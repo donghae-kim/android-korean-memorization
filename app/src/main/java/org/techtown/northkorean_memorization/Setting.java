@@ -27,7 +27,6 @@ public class Setting extends AppCompatActivity {
         } else {
             setTheme(R.style.LightTheme);
         }
-
         setContentView(R.layout.activity_setting);
 
 

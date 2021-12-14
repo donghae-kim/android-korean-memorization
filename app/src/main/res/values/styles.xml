@@ -2,8 +2,8 @@
 <resources>
     <style name="LightTheme" parent="">
         <item name="textColor">#000000</item>
-        <item name="metaTextColor">#606060</item>
-        <item name="bgColor">#ffffff</item>
+        <item name="metaTextColor">#A8A8A8</item>
+        <item name="bgColor">#F0F0F0</item>
         <item name="windowNoTitle">true</item>
 
     </style>

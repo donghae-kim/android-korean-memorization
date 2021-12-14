@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:title="체크박스"
+        android:key="checkbox"
+        android:defaultValue="true"
+        />
+    <RingtonePreference
+        android:title="링톤"
+        android:key="Ring"
+        android:defaultValue="true"
+        />
+    <Preference
+        android:title="다크모드"
+        android:key="DarkMode"
+        />
+</PreferenceScreen>
