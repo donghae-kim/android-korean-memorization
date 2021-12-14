@@ -4,49 +4,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
+    android:weightSum="20"
     android:background="#F0F0F0">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="3">
+        android:layout_weight="5"
+        android:layout_margin="20dp"
+        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/kim"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/kim"
-            android:adjustViewBounds="true"
-            android:maxWidth="200dp"
-            android:maxHeight="150dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="80dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <org.techtown.northkorean_memorization.OutlineTextView
-            xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="북한\n    문화어\n  암기앱"
-            android:textColor="@color/white"
-            android:textSize="35dp"
-            android:layout_marginTop="20dp"
-            textTitle:textStroke="true"
-            textTitle:textStrokeColor="@color/black"
-            textTitle:textStrokeWidth="6.0"/>
+            <ImageView
+                android:id="@+id/kim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/kim"
+                android:adjustViewBounds="true"
+                android:maxWidth="250dp"
+                android:maxHeight="160dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <org.techtown.northkorean_memorization.OutlineTextView
+                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="북한"
+                    android:textColor="@color/white"
+                    android:textSize="43dp"
+                    android:includeFontPadding="false"
+                    textTitle:textStroke="true"
+                    textTitle:textStrokeColor="@color/black"
+                    textTitle:textStrokeWidth="6.0"/>
+
+                <org.techtown.northkorean_memorization.OutlineTextView
+                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  문화어"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="35dp"
+                    textTitle:textStroke="true"
+                    textTitle:textStrokeColor="@color/black"
+                    textTitle:textStrokeWidth="6.0"/>
+
+
+                <org.techtown.northkorean_memorization.OutlineTextView
+                    xmlns:textTitle = "http://schemas.android.com/apk/res/org.techtown.northkorean_memorization"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="암기앱"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="35dp"
+                    textTitle:textStroke="true"
+                    textTitle:textStrokeColor="@color/black"
+                    textTitle:textStrokeWidth="6.0"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/name"
-            android:text="null"/>
-    </LinearLayout>
+            android:text="null"
+            android:layout_gravity="right|top"/>
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="7">
+        android:layout_weight="15">
 
         <Button
             android:id="@+id/study"
@@ -100,8 +139,8 @@
             android:layout_alignLeft="@+id/study"
             android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
-            android:text="설정"
-            android:textSize="25dp"
+            android:text="설 정"
+            android:textSize="20dp"
             android:textColor="?attr/metaTextColor"
             app:backgroundTint="#FFFFFF" />
 
@@ -114,22 +153,21 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="로그인"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textColor="?attr/metaTextColor"
             app:backgroundTint="#FFFFFF" />
 
         <Button
-            android:text="로그아웃ㅋ"
+            android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/logoutBtn"
-            android:background="@drawable/solid_button"
-            android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#FFFFFF"
             android:layout_below="@+id/registerID"
             android:layout_alignRight="@+id/registerID"
-            android:layout_margin="10dp"
-            />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/solid_button"
+            android:text="로그아웃"
+            android:textColor="?attr/metaTextColor"
+            app:backgroundTint="#FFFFFF" />
 
     </RelativeLayout>
 </LinearLayout>
