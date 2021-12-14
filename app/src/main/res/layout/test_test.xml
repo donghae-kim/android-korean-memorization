@@ -24,7 +24,7 @@
                 android:layout_weight="30"
 
                 android:text="Problems"
-                android:textSize="64dp"
+                android:textSize="48dp"
                 android:gravity="center"
                 android:id="@+id/test_problems"/>
 
