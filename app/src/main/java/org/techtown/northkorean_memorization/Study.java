@@ -67,18 +67,15 @@ public class Study extends AppCompatActivity {
 
                 final SimpleCursorAdapter simpleCursorAdapter2 = databaseAdapter.combobox2ListViewFromDB();
                 final SimpleCursorAdapter simpleCursorAdapter3 = databaseAdapter.combobox3ListViewFromDB();
-                System.out.println(spinnerposi+"야야야야ㅑ야양");
 
                 Cursor cursor;
                 if(spinnerposi == 0)
                 {   listvContact.setAdapter(simpleCursorAdapter1);
                   cursor = (Cursor) simpleCursorAdapter1.getItem(position);
-                    System.out.println(spinnerposi+"야야야야ㅑ야양");
                 }
                 else if( spinnerposi == 1)
                 {   listvContact.setAdapter(simpleCursorAdapter2);
                     cursor = (Cursor) simpleCursorAdapter2.getItem(position);
-                    System.out.println(spinnerposi+"야야야야ㅑ야양");
                 }
                 else
                 {   listvContact.setAdapter(simpleCursorAdapter3);
@@ -110,7 +107,35 @@ public class Study extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
 
 
-                        if(which==0 ){
+                        /*if(which==0 ){
+                            if (record_mark[position]==1) {
+                                for (int i = 0; i < mark.length; i++) {
+                                    mark[i] = Integer.valueOf(checkitem[position]);
+                                }                                    updateDB1(mark, 0);
+
+                            }
+                            else if(record_mark[position]==0) {
+                                for (int i = 0; i < memo.length; i++) {
+                                    mark[i] = Integer.valueOf(checkitem[position]);
+                                }                                    updateDB1(mark, 1);
+
+                            } return;}*/
+
+                        if(which ==1) {
+                          if (record_memo[position]==1) {
+                              for (int i = 0; i < mark.length; i++) {
+                                  memo[i] = Integer.valueOf(checkitem[position]);
+                              }                                  updateDB(memo, 0);
+
+                          } else if(record_memo[position]==0) {
+                              for (int i = 0; i < memo.length; i++) {
+                                  memo[i] = Integer.valueOf(checkitem[position]);
+
+                              }                                  updateDB(memo, 1);
+                          }
+                      return;
+                        }
+                       else if(which==0 ){
                             if (record_mark[position]==1) {
                                 for (int i = 0; i < mark.length; i++) {
                                     mark[i] = Integer.valueOf(checkitem[position]);
@@ -123,20 +148,6 @@ public class Study extends AppCompatActivity {
                                 }                                    updateDB1(mark, 1);
 
                             } return;}
-
-                        else if(which ==1) {
-                          if (record_memo[position]==1) {
-                              for (int i = 0; i < mark.length; i++) {
-                                  memo[i] = Integer.valueOf(checkitem[position]);
-                              }                                  updateDB(memo, 0);
-
-                          } else if(record_memo[position]==0) {
-                              for (int i = 0; i < memo.length; i++) {
-                                  memo[i] = Integer.valueOf(checkitem[position]);
-
-                              }                                  updateDB(memo, 1);
-                          }
-                      }
 
                     }
 
@@ -180,6 +191,8 @@ public class Study extends AppCompatActivity {
                         final SimpleCursorAdapter simpleCursorAdapter = databaseAdapter.combobox3ListViewFromDB();
                         ListView listvContact = findViewById(R.id.lvContact);
                         listvContact.setAdapter(simpleCursorAdapter);
+                    spinnerposi=2;
+
                 }
             }
 

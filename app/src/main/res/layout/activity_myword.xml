@@ -14,10 +14,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="180dp"
-    android:id="@+id/top"
+        android:id="@+id/top"
         android:layout_alignParentTop="true"
+        android:textSize="20dp"
+        android:textColor="@color/black"
         />
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/lvmyword"
+        android:background="#000000"
+        android:id="@+id/table"
+        android:stretchColumns="0,1,"
+        >
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="문화어"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="#808080"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="표준어"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:background="#808080"
+
+                />
+
+        </TableRow>
+    </TableLayout>
 
 
     <ListView

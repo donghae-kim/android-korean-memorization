@@ -99,7 +99,7 @@ public class Test_DatabaseAdapter {
     public SimpleCursorAdapter graphmake() {
         String columns[] = {DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2};
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Words Where (Memorized==1 AND Field==3)", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Words Where (Memorized==1 AND Field==1)", null);
         String[] fromFieldNames = new String[]{
                 DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2
         };
@@ -114,7 +114,40 @@ public class Test_DatabaseAdapter {
         return contactAdapter;
     }
 
+    public SimpleCursorAdapter graphmake1() {
+        String columns[] = {DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2};
 
+        Cursor cursor = db.rawQuery("SELECT * FROM Words Where (Memorized==1 AND Field==2)", null);
+        String[] fromFieldNames = new String[]{
+                DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2
+        };
+        int[] toViewIDs = new int[]{R.id.item_id, R.id.item_NORTH, R.id.item_SOUTH, R.id.item_FIELD, R.id.item_BOOKMARK, R.id.item_MEMORIZED,R.id.item_TEMP1,R.id.item_TEMP2};
+        SimpleCursorAdapter contactAdapter = new SimpleCursorAdapter(
+                context,
+                R.layout.study_single_item,
+                cursor,
+                fromFieldNames,
+                toViewIDs
+        );
+        return contactAdapter;
+    }
+    public SimpleCursorAdapter graphmake2() {
+        String columns[] = {DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2};
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Words Where (Memorized==1 AND Field==3)", null);
+        String[] fromFieldNames = new String[]{
+                DatabaseHelper.KEY_ROWID, DatabaseHelper.KEY_NORTH, DatabaseHelper.KEY_SOUTH, DatabaseHelper.KEY_FIELD, DatabaseHelper.KEY_BOOKMARK, DatabaseHelper.KEY_MEMORIZED, DatabaseHelper.KEY_TEMP, DatabaseHelper.KEY_TEMP2
+        };
+        int[] toViewIDs = new int[]{R.id.item_id, R.id.item_NORTH, R.id.item_SOUTH, R.id.item_FIELD, R.id.item_BOOKMARK, R.id.item_MEMORIZED,R.id.item_TEMP1,R.id.item_TEMP2};
+        SimpleCursorAdapter contactAdapter = new SimpleCursorAdapter(
+                context,
+                R.layout.study_single_item,
+                cursor,
+                fromFieldNames,
+                toViewIDs
+        );
+        return contactAdapter;
+    }
     public static class DatabaseHelper extends SQLiteOpenHelper {
 
             private static final String DATABASE_NAME = "Words.db";
