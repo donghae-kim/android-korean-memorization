@@ -3,13 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="#F0F0F0">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        >
+        android:layout_weight="3">
+
         <ImageView
             android:id="@+id/kim"
             android:layout_width="wrap_content"
@@ -42,7 +45,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="7">
 
         <Button
             android:id="@+id/study"
@@ -54,9 +58,10 @@
             android:layout_marginEnd="20dp"
 
             android:background="@drawable/solid_button"
-            android:text="학  습"
+            android:text="학 습"
+            android:textSize="25dp"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc" />
+            app:backgroundTint="#FFFFFF" />
 
         <Button
             android:id="@+id/test"
@@ -69,45 +74,49 @@
             android:background="@drawable/solid_button"
             android:onClick="show_default_dialog"
             android:text="테스트"
-            app:backgroundTint="#dcdcdc"
+            android:textSize="25dp"
+            app:backgroundTint="#FFFFFF"
             android:textColor="?attr/metaTextColor"/>
 
         <Button
             android:id="@+id/myWord"
             android:layout_width="115dp"
-            android:layout_height="65dp"
+            android:layout_height="110dp"
             android:layout_below="@+id/study"
             android:layout_alignLeft="@+id/study"
             android:layout_alignRight="@+id/test"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="내 단어장"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc" />
+            android:textSize="25dp"
+            app:backgroundTint="#FFFFFF" />
 
         <Button
             android:id="@+id/setting"
             android:layout_width="175dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_below="@+id/myWord"
             android:layout_alignLeft="@+id/study"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="설정"
+            android:textSize="25dp"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc" />
+            app:backgroundTint="#FFFFFF" />
 
         <Button
             android:id="@+id/registerID"
             android:layout_width="175dp"
-            android:layout_height="110dp"
+            android:layout_height="90dp"
             android:layout_below="@id/myWord"
             android:layout_alignRight="@+id/myWord"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/solid_button"
             android:text="로그인"
+            android:textSize="25dp"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc" />
+            app:backgroundTint="#FFFFFF" />
 
         <Button
             android:text="로그아웃ㅋ"
@@ -116,7 +125,7 @@
             android:id="@+id/logoutBtn"
             android:background="@drawable/solid_button"
             android:textColor="?attr/metaTextColor"
-            app:backgroundTint="#dcdcdc"
+            app:backgroundTint="#FFFFFF"
             android:layout_below="@+id/registerID"
             android:layout_alignRight="@+id/registerID"
             android:layout_margin="10dp"
