@@ -1,0 +1,3 @@
+USER_INTERFACE
+
+북한어 암기앱
